@@ -33,22 +33,29 @@
   /* NAV */
   header{position:fixed;top:0;left:0;right:0;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.06)}
   nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1200px;margin:0 auto}
-  .logo{display:flex;align-items:center;gap:10px;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.3rem}
-  .logo-mark{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Inter',sans-serif}
+  .brand{font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:1.35rem;letter-spacing:.5px}
+  .brand span{color:var(--teal)}
   .nav-links{display:flex;gap:28px;list-style:none}
-  .nav-links a{font-weight:500;color:var(--navy);position:relative;padding:6px 0;transition:color .3s}
+  .nav-links a{font-weight:500;color:var(--navy);position:relative;padding:6px 0;transition:color .3s;cursor:pointer}
   .nav-links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--teal);transition:width .3s}
-  .nav-links a:hover{color:var(--teal)}
-  .nav-links a:hover::after{width:100%}
-  .nav-cta{background:var(--navy);color:#fff;padding:10px 20px;border-radius:30px;font-weight:600;transition:all .3s}
+  .nav-links a:hover,.nav-links a.active{color:var(--teal)}
+  .nav-links a:hover::after,.nav-links a.active::after{width:100%}
+  .nav-cta{background:var(--navy);color:#fff!important;padding:10px 20px;border-radius:30px;font-weight:600;transition:all .3s}
   .nav-cta:hover{background:var(--teal);transform:translateY(-2px);box-shadow:var(--shadow)}
+  .nav-cta::after{display:none!important}
   .burger{display:none;font-size:1.6rem;background:none;border:none;cursor:pointer;color:var(--navy)}
 
+  /* PAGE TRANSITIONS */
+  main{padding-top:80px;min-height:100vh}
+  .page{display:none;animation:pageIn .5s ease-out}
+  .page.active{display:block}
+  @keyframes pageIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+
   /* HERO */
-  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(11,37,69,.85),rgba(19,163,163,.75)),url('https://images.unsplash.com/photo-1587370560942-ad2a04eabb6d?auto=format&fit=crop&w=1920&q=80') center/cover;color:#fff;padding-top:80px}
+  .hero{min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(11,37,69,.82),rgba(19,163,163,.6)),url('https://images.pexels.com/photos/8460217/pexels-photo-8460217.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover;color:#fff}
   .hero-content{max-width:780px;animation:fadeUp 1s ease-out}
   .hero h1{color:#fff;font-size:3.4rem;margin-bottom:1rem}
-  .hero p{color:rgba(255,255,255,.92);font-size:1.2rem;margin-bottom:2rem;max-width:620px}
+  .hero p{color:rgba(255,255,255,.95);font-size:1.2rem;margin-bottom:2rem;max-width:620px}
   .hero-buttons{display:flex;gap:16px;flex-wrap:wrap}
   .btn{display:inline-block;padding:14px 30px;border-radius:30px;font-weight:600;transition:all .3s;cursor:pointer;border:none;font-size:1rem;font-family:'Inter',sans-serif}
   .btn-primary{background:var(--teal);color:#fff;box-shadow:0 6px 20px rgba(19,163,163,.4)}
@@ -56,8 +63,14 @@
   .btn-outline{background:transparent;color:#fff;border:2px solid #fff}
   .btn-outline:hover{background:#fff;color:var(--navy);transform:translateY(-3px)}
 
+  /* PAGE HEADER (sub-pages) */
+  .page-header{padding:80px 0 60px;background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;text-align:center}
+  .page-header h1{color:#fff;font-size:2.8rem;margin-bottom:.5rem}
+  .page-header p{color:rgba(255,255,255,.85);max-width:600px;margin:0 auto;font-size:1.05rem}
+  .crumbs{font-size:.85rem;color:rgba(255,255,255,.7);margin-top:14px;letter-spacing:1px;text-transform:uppercase}
+
   /* SECTIONS */
-  section{padding:90px 0}
+  section{padding:80px 0}
   .section-head{text-align:center;max-width:680px;margin:0 auto 60px}
   .section-head .eyebrow{color:var(--teal);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem;margin-bottom:10px;display:inline-block}
 
@@ -68,13 +81,13 @@
   .about-img img{height:480px;object-fit:cover;width:100%}
   .about-text h2{margin-bottom:1rem}
   .about-text p{margin-bottom:1rem;font-size:1.05rem}
-  .stats{display:flex;gap:30px;margin-top:30px}
-  .stat{text-align:center}
+  .stats{display:flex;gap:30px;margin-top:30px;flex-wrap:wrap}
+  .stat{text-align:center;min-width:110px}
   .stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--teal);font-weight:700}
   .stat-label{color:var(--gray);font-size:.9rem}
 
   /* SERVICES */
-  .services{background:var(--light)}
+  .services-bg{background:var(--light)}
   .service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
   .service-card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:all .4s;cursor:pointer}
   .service-card:hover{transform:translateY(-10px);box-shadow:0 20px 40px rgba(11,37,69,.18)}
@@ -84,20 +97,19 @@
   .service-body{padding:24px}
   .service-body p{font-size:.95rem}
 
-  /* GOALS / MISSION */
-  .goals{background:#fff}
+  /* GOALS */
   .goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
   .goal-card{padding:36px 26px;border-radius:18px;background:linear-gradient(135deg,#f4f8fb,#fff);border:1px solid #e6edf3;text-align:center;transition:all .4s}
   .goal-card:hover{transform:translateY(-6px);border-color:var(--teal);box-shadow:var(--shadow)}
-  .goal-icon{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#fff;font-weight:700;font-size:1.4rem;font-family:'Playfair Display',serif}
+  .goal-num{width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#fff;font-weight:700;font-size:1.3rem;font-family:'Playfair Display',serif}
 
   /* REVIEWS */
-  .reviews{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
-  .reviews h2,.reviews .section-head p{color:#fff}
-  .reviews .section-head p{opacity:.9}
+  .reviews-bg{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff}
+  .reviews-bg h2,.reviews-bg .section-head p{color:#fff}
+  .reviews-bg .section-head p{opacity:.9}
   .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
   .review-card{background:rgba(255,255,255,.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);padding:30px;border-radius:18px;transition:all .4s}
-  .review-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.12)}
+  .review-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.13)}
   .stars{color:var(--gold);font-size:1.1rem;letter-spacing:2px;margin-bottom:14px}
   .review-text{font-style:italic;margin-bottom:20px;color:rgba(255,255,255,.92)}
   .reviewer{display:flex;align-items:center;gap:14px}
@@ -106,7 +118,7 @@
   .reviewer-loc{font-size:.85rem;color:rgba(255,255,255,.7)}
 
   /* BOOKING / CONTACT */
-  .booking{background:var(--light)}
+  .booking-bg{background:var(--light)}
   .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
   .contact-info{padding:10px}
   .contact-info h2{margin-bottom:1rem}
@@ -124,19 +136,27 @@
   textarea{resize:vertical;min-height:90px}
   form .btn-primary{width:100%;margin-top:10px}
 
+  /* CTA STRIP */
+  .cta-strip{background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;padding:60px 0;text-align:center}
+  .cta-strip h2{color:#fff;margin-bottom:.5rem}
+  .cta-strip p{color:rgba(255,255,255,.9);margin-bottom:24px}
+
   /* FOOTER */
   footer{background:var(--navy);color:rgba(255,255,255,.8);padding:50px 0 20px;text-align:center}
-  footer .logo{justify-content:center;color:#fff;margin-bottom:14px}
+  footer .brand{color:#fff;display:inline-block;margin-bottom:14px}
   footer p{color:rgba(255,255,255,.7);margin-bottom:8px}
   .footer-bottom{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:.9rem}
+  .footer-nav{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:14px 0 20px}
+  .footer-nav a{color:rgba(255,255,255,.75);font-size:.95rem;cursor:pointer;transition:color .3s}
+  .footer-nav a:hover{color:var(--teal)}
 
   /* CHATBOT */
-  .chat-toggle{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;cursor:pointer;box-shadow:0 8px 25px rgba(19,163,163,.5);z-index:99;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1.6rem;font-family:'Inter',sans-serif;transition:transform .3s;animation:pulse 2s infinite}
+  .chat-toggle{position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;border:none;cursor:pointer;box-shadow:0 8px 25px rgba(19,163,163,.5);z-index:99;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;font-family:'Inter',sans-serif;transition:transform .3s;animation:pulse 2s infinite;letter-spacing:1px}
   .chat-toggle:hover{transform:scale(1.1)}
   .chat-window{position:fixed;bottom:100px;right:24px;width:360px;max-width:calc(100vw - 48px);height:480px;background:#fff;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.25);z-index:99;display:none;flex-direction:column;overflow:hidden;animation:fadeUp .3s ease-out}
   .chat-window.open{display:flex}
   .chat-header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
-  .chat-header h4{font-family:'Playfair Display',serif;font-size:1.1rem}
+  .chat-header h4{font-family:'Playfair Display',serif;font-size:1.1rem;color:#fff}
   .chat-header span{font-size:.8rem;opacity:.85}
   .chat-close{background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer}
   .chat-body{flex:1;padding:16px;overflow-y:auto;background:#f4f8fb}
@@ -162,11 +182,11 @@
     .nav-links.open{display:flex}
     .burger{display:block}
     .hero h1{font-size:2.2rem}
+    .page-header h1{font-size:2rem}
     h2{font-size:1.8rem}
     .about-grid,.booking-grid{grid-template-columns:1fr;gap:30px}
     .service-grid,.goal-grid,.review-grid{grid-template-columns:1fr}
     .form-row{grid-template-columns:1fr}
-    .stats{flex-wrap:wrap}
     section{padding:60px 0}
   }
 </style>
@@ -175,208 +195,313 @@
 
 <header>
   <nav>
-    <a href="#home" class="logo"><span class="logo-mark">A</span> Aegis Medical Transport</a>
+    <a class="brand" data-page="home">AEGIS <span>Medical Transport</span></a>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#goals">Our Goals</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-      <li><a href="#contact" class="nav-cta">Book a Ride</a></li>
+      <li><a data-page="home">Home</a></li>
+      <li><a data-page="services">Services</a></li>
+      <li><a data-page="goals">Our Goals</a></li>
+      <li><a data-page="reviews">Reviews</a></li>
+      <li><a data-page="contact" class="nav-cta">Book a Ride</a></li>
     </ul>
     <button class="burger" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
   </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="container hero-content">
-    <h1>Safe, Comfortable & Reliable Medical Transportation</h1>
-    <p>Aegis Medical Transport LLC is dedicated to providing dignified, professional non-emergency medical transport throughout Wesley Chapel and surrounding Florida communities.</p>
-    <div class="hero-buttons">
-      <a href="#contact" class="btn btn-primary">Book a Ride</a>
-      <a href="#services" class="btn btn-outline">Our Services</a>
-    </div>
-  </div>
-</section>
+<main>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container about-grid">
-    <div class="about-img reveal">
-      <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=900&q=80" alt="Compassionate medical transport care"/>
-    </div>
-    <div class="about-text reveal">
-      <span style="color:var(--teal);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem">About Us</span>
-      <h2>Compassionate Care On Every Mile</h2>
-      <p>Founded by <strong>Ms. Iesha Campbell</strong>, Aegis Medical Transport LLC was built on a simple belief: every patient deserves safe, on-time, and respectful transportation to and from their medical appointments.</p>
-      <p>From dialysis sessions to physical therapy, doctor visits, and hospital discharges — our trained drivers and clean, comfortable vehicles ensure peace of mind for patients and families alike.</p>
-      <div class="stats">
-        <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Licensed & Insured</div></div>
-        <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Scheduling Support</div></div>
-        <div class="stat"><div class="stat-num">FL</div><div class="stat-label">Wesley Chapel & Beyond</div></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="page-home">
 
-<!-- SERVICES -->
-<section class="services" id="services">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Our Services</span>
-      <h2>Non-Emergency Medical Transport You Can Trust</h2>
-      <p>We provide a full range of NEMT services tailored to ambulatory and wheelchair-accessible needs.</p>
-    </div>
-    <div class="service-grid">
-      <div class="service-card reveal">
-        <div class="service-img"><img src="https://images.unsplash.com/photo-1632833239869-a37e3a5806d2?auto=format&fit=crop&w=800&q=80" alt="Ambulatory transport"/></div>
-        <div class="service-body"><h3>Ambulatory Transport</h3><p>Door-to-door service for patients who can walk independently or with minimal assistance.</p></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-img"><img src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&w=800&q=80" alt="Wheelchair transport"/></div>
-        <div class="service-body"><h3>Wheelchair Transport</h3><p>Spacious, ADA-compliant vans equipped with lifts and secure restraints for safe rides.</p></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-img"><img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=800&q=80" alt="Dialysis appointments"/></div>
-        <div class="service-body"><h3>Dialysis & Recurring Visits</h3><p>Dependable scheduled transport for ongoing treatments — never miss an appointment.</p></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-img"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Hospital discharge transport"/></div>
-        <div class="service-body"><h3>Hospital Discharges</h3><p>Comfortable rides home after a hospital stay, with care from arrival to drop-off.</p></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-img"><img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=800&q=80" alt="Doctor appointment rides"/></div>
-        <div class="service-body"><h3>Doctor Appointments</h3><p>On-time pickup and return for routine and specialist medical visits.</p></div>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-img"><img src="https://images.unsplash.com/photo-1504439468489-c8920d796a29?auto=format&fit=crop&w=800&q=80" alt="Senior care transport"/></div>
-        <div class="service-body"><h3>Senior & Assisted Living</h3><p>Patient, friendly transport for seniors — including help to and from the vehicle.</p></div>
+  <section class="hero">
+    <div class="container hero-content">
+      <h1>Safe, Comfortable & Reliable Medical Transportation</h1>
+      <p>Aegis Medical Transport LLC delivers dignified, professional non-emergency medical transport throughout Wesley Chapel and surrounding Florida communities.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" data-page="contact">Book a Ride</a>
+        <a class="btn btn-outline" data-page="services">Our Services</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- GOALS -->
-<section class="goals" id="goals">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Our Goals</span>
-      <h2>Driven by Care, Defined by Service</h2>
-      <p>Our mission shapes every ride we provide.</p>
-    </div>
-    <div class="goal-grid">
-      <div class="goal-card reveal"><div class="goal-icon">01</div><h3>Safety First</h3><p>Every driver is background-checked, trained, and committed to safe, defensive driving.</p></div>
-      <div class="goal-card reveal"><div class="goal-icon">02</div><h3>On-Time, Every Time</h3><p>We respect your schedule. Punctual pickups and timely arrivals are our promise.</p></div>
-      <div class="goal-card reveal"><div class="goal-icon">03</div><h3>Dignified Service</h3><p>We treat every passenger with kindness, patience, and the respect they deserve.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- REVIEWS -->
-<section class="reviews" id="reviews">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow" style="color:var(--gold)">Testimonials</span>
-      <h2>What Our Riders Say</h2>
-      <p>Real feedback from the families and patients we serve.</p>
-    </div>
-    <div class="review-grid">
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"Aegis has been a blessing for my mother. The drivers are kind, the vans are clean, and they're always on time for her dialysis appointments."</p>
-        <div class="reviewer">
-          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Linda M."/>
-          <div><div class="reviewer-name">Linda M.</div><div class="reviewer-loc">Wesley Chapel, FL</div></div>
-        </div>
+  <section>
+    <div class="container about-grid">
+      <div class="about-img reveal">
+        <img src="https://images.pexels.com/photos/7551675/pexels-photo-7551675.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Caregiver assisting senior patient into medical transport vehicle"/>
       </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"Professional, compassionate, and reliable. After my surgery they made sure I got home safely and comfortably. Highly recommend Aegis."</p>
-        <div class="reviewer">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Robert S."/>
-          <div><div class="reviewer-name">Robert S.</div><div class="reviewer-loc">Tampa, FL</div></div>
-        </div>
-      </div>
-      <div class="review-card reveal">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"Booking was easy and the team kept me informed every step of the way. The wheelchair van was spotless. Truly a 5-star experience."</p>
-        <div class="reviewer">
-          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Maria G."/>
-          <div><div class="reviewer-name">Maria G.</div><div class="reviewer-loc">Land O' Lakes, FL</div></div>
+      <div class="about-text reveal">
+        <span class="eyebrow" style="color:var(--teal);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem">About Us</span>
+        <h2>Compassionate Care On Every Mile</h2>
+        <p>Founded by <strong>Ms. Iesha Campbell</strong>, Aegis Medical Transport LLC was built on a simple belief: every patient deserves safe, on-time, and respectful transportation to and from their medical appointments.</p>
+        <p>From dialysis sessions to physical therapy, doctor visits, and hospital discharges — our trained drivers and clean, comfortable vehicles ensure peace of mind for patients and families alike.</p>
+        <div class="stats">
+          <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Licensed & Insured</div></div>
+          <div class="stat"><div class="stat-num">24/7</div><div class="stat-label">Scheduling Support</div></div>
+          <div class="stat"><div class="stat-num">FL</div><div class="stat-label">Wesley Chapel & Beyond</div></div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- BOOKING / CONTACT -->
-<section class="booking" id="contact">
-  <div class="container booking-grid">
-    <div class="contact-info reveal">
-      <span class="eyebrow" style="color:var(--teal);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem">Contact</span>
-      <h2>Book Your Ride Today</h2>
-      <p>Fill out the form and our team will confirm your ride details promptly. For immediate scheduling, give us a call.</p>
-      <div class="info-item"><div class="info-icon">P</div><div><h4>Phone</h4><p>727-808-9360</p></div></div>
-      <div class="info-item"><div class="info-icon">F</div><div><h4>Fax</h4><p>727-808-9360</p></div></div>
-      <div class="info-item"><div class="info-icon">@</div><div><h4>Email</h4><p>Jesslopez7836@gmail.com</p></div></div>
-      <div class="info-item"><div class="info-icon">A</div><div><h4>Address</h4><p>34057 Sorrel Mint Dr<br>Wesley Chapel, FL 33543</p></div></div>
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Need a Ride to Your Next Appointment?</h2>
+      <p>We're here to help — schedule your trip in minutes.</p>
+      <a class="btn btn-outline" data-page="contact">Book a Ride Now</a>
     </div>
-    <form id="bookingForm" action="https://formsubmit.co/Jesslopez7836@gmail.com" method="POST">
-      <h3>Ride Booking Form</h3>
-      <input type="hidden" name="_subject" value="New Ride Booking — Aegis Medical Transport"/>
-      <input type="hidden" name="_captcha" value="false"/>
-      <input type="hidden" name="_template" value="table"/>
-      <div class="form-row">
-        <div class="form-group"><label>Full Name *</label><input type="text" name="Full Name" required/></div>
-        <div class="form-group"><label>Phone *</label><input type="tel" name="Phone" required/></div>
-      </div>
-      <div class="form-group"><label>Email *</label><input type="email" name="Email" required/></div>
-      <div class="form-row">
-        <div class="form-group"><label>Pickup Date *</label><input type="date" name="Pickup Date" required/></div>
-        <div class="form-group"><label>Pickup Time *</label><input type="time" name="Pickup Time" required/></div>
-      </div>
-      <div class="form-group"><label>Pickup Address *</label><input type="text" name="Pickup Address" required/></div>
-      <div class="form-group"><label>Drop-off Address *</label><input type="text" name="Drop-off Address" required/></div>
-      <div class="form-row">
-        <div class="form-group"><label>Service Type *</label>
-          <select name="Service Type" required>
-            <option value="">Select...</option>
-            <option>Ambulatory</option>
-            <option>Wheelchair</option>
-            <option>Dialysis</option>
-            <option>Hospital Discharge</option>
-            <option>Doctor Appointment</option>
-          </select>
-        </div>
-        <div class="form-group"><label>Round Trip?</label>
-          <select name="Round Trip"><option>One Way</option><option>Round Trip</option></select>
-        </div>
-      </div>
-      <div class="form-group"><label>Special Requests / Notes</label><textarea name="Notes" placeholder="Any mobility needs, escort, etc."></textarea></div>
-      <button type="submit" class="btn btn-primary">Submit Booking Request</button>
-    </form>
+  </section>
+
+</div>
+
+<!-- ============ SERVICES PAGE ============ -->
+<div class="page" id="page-services">
+  <div class="page-header">
+    <div class="container">
+      <div class="crumbs">Home / Services</div>
+      <h1>Our Transportation Services</h1>
+      <p>A full range of non-emergency medical transport services tailored to ambulatory and wheelchair-accessible needs.</p>
+    </div>
   </div>
-</section>
+
+  <section class="services-bg">
+    <div class="container">
+      <div class="service-grid">
+        <div class="service-card reveal">
+          <div class="service-img"><img src="https://images.pexels.com/photos/8460049/pexels-photo-8460049.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ambulatory medical transport"/></div>
+          <div class="service-body"><h3>Ambulatory Transport</h3><p>Door-to-door service for patients who can walk independently or with minimal assistance, in clean and comfortable vehicles.</p></div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-img"><img src="https://images.pexels.com/photos/7551618/pexels-photo-7551618.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Wheelchair accessible transport van"/></div>
+          <div class="service-body"><h3>Wheelchair Transport</h3><p>Spacious, ADA-compliant vans equipped with hydraulic lifts and secure four-point restraint systems for safe wheelchair rides.</p></div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-img"><img src="https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Dialysis recurring transport"/></div>
+          <div class="service-body"><h3>Dialysis & Recurring Visits</h3><p>Dependable scheduled transport for ongoing dialysis, chemotherapy and rehabilitation — never miss an appointment.</p></div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-img"><img src="https://images.pexels.com/photos/7551677/pexels-photo-7551677.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Hospital discharge transport"/></div>
+          <div class="service-body"><h3>Hospital Discharges</h3><p>Comfortable, attentive rides home after a hospital stay — with assistance from the bedside to your front door.</p></div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-img"><img src="https://images.pexels.com/photos/8460157/pexels-photo-8460157.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Doctor appointment medical transport"/></div>
+          <div class="service-body"><h3>Doctor Appointments</h3><p>On-time pickup and return service for routine checkups and specialist medical visits across the region.</p></div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-img"><img src="https://images.pexels.com/photos/7551592/pexels-photo-7551592.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Senior assisted living transport"/></div>
+          <div class="service-body"><h3>Senior & Assisted Living</h3><p>Patient, friendly transport for seniors — including hands-on help to and from the vehicle and into appointments.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Ready to Schedule?</h2>
+      <p>Our team is standing by to confirm your ride details.</p>
+      <a class="btn btn-outline" data-page="contact">Book a Ride</a>
+    </div>
+  </section>
+</div>
+
+<!-- ============ GOALS PAGE ============ -->
+<div class="page" id="page-goals">
+  <div class="page-header">
+    <div class="container">
+      <div class="crumbs">Home / Our Goals</div>
+      <h1>Driven by Care, Defined by Service</h1>
+      <p>Our mission shapes every ride we provide — safety, punctuality and dignity for every passenger we serve.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container">
+      <div class="goal-grid">
+        <div class="goal-card reveal"><div class="goal-num">01</div><h3>Safety First</h3><p>Every driver is background-checked, drug-tested, and trained in passenger assistance and defensive driving techniques.</p></div>
+        <div class="goal-card reveal"><div class="goal-num">02</div><h3>On-Time, Every Time</h3><p>We respect your schedule and your health. Punctual pickups and timely arrivals to every appointment are our promise.</p></div>
+        <div class="goal-card reveal"><div class="goal-num">03</div><h3>Dignified Service</h3><p>We treat every passenger with kindness, patience, and the respect they deserve — like family, every single trip.</p></div>
+        <div class="goal-card reveal"><div class="goal-num">04</div><h3>Clean, Modern Fleet</h3><p>Our vehicles are sanitized after every ride and maintained to the highest mechanical and comfort standards.</p></div>
+        <div class="goal-card reveal"><div class="goal-num">05</div><h3>Family Communication</h3><p>We keep loved ones informed every step of the way — from pickup confirmation to safe drop-off.</p></div>
+        <div class="goal-card reveal"><div class="goal-num">06</div><h3>Accessible to All</h3><p>From ambulatory to wheelchair-bound passengers, we tailor every ride to the unique needs of those we serve.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-bg">
+    <div class="container about-grid">
+      <div class="about-text reveal">
+        <span class="eyebrow">Our Promise</span>
+        <h2>More Than Transportation — Peace of Mind</h2>
+        <p>We understand that medical transport is more than just getting from point A to point B. It's about trusting someone with the well-being of you or your loved one during a vulnerable time.</p>
+        <p>That's why every member of our team is hand-selected, every vehicle inspected, and every ride personalized to the needs of the patient.</p>
+      </div>
+      <div class="about-img reveal">
+        <img src="https://images.pexels.com/photos/7551616/pexels-photo-7551616.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Professional medical transport driver assisting patient"/>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============ REVIEWS PAGE ============ -->
+<div class="page" id="page-reviews">
+  <div class="page-header">
+    <div class="container">
+      <div class="crumbs">Home / Reviews</div>
+      <h1>What Our Riders Say</h1>
+      <p>Real feedback from the families, patients and care facilities we proudly serve every day.</p>
+    </div>
+  </div>
+
+  <section class="reviews-bg">
+    <div class="container">
+      <div class="review-grid">
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Aegis has been a blessing for my mother. The drivers are kind, the vans are clean, and they're always on time for her dialysis appointments."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" alt="Linda M."/>
+            <div><div class="reviewer-name">Linda M.</div><div class="reviewer-loc">Wesley Chapel, FL</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Professional, compassionate, and reliable. After my surgery they made sure I got home safely and comfortably. Highly recommend Aegis."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Robert S."/>
+            <div><div class="reviewer-name">Robert S.</div><div class="reviewer-loc">Tampa, FL</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Booking was easy and the team kept me informed every step of the way. The wheelchair van was spotless. A truly 5-star experience."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80" alt="Maria G."/>
+            <div><div class="reviewer-name">Maria G.</div><div class="reviewer-loc">Land O' Lakes, FL</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"As a case manager, I refer patients to Aegis with full confidence. They are punctual, professional, and treat every patient with real care."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80" alt="Patricia D."/>
+            <div><div class="reviewer-name">Patricia D.</div><div class="reviewer-loc">Case Manager, Tampa</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"My father has dementia and the driver was so patient and gentle with him. We finally found a service we trust completely."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80" alt="Carla R."/>
+            <div><div class="reviewer-name">Carla R.</div><div class="reviewer-loc">Zephyrhills, FL</div></div>
+          </div>
+        </div>
+        <div class="review-card reveal">
+          <div class="stars">★★★★★</div>
+          <p class="review-text">"Excellent communication from booking to drop-off. The vehicle was modern, clean, and the ride was smooth. Will absolutely use again."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80" alt="James T."/>
+            <div><div class="reviewer-name">James T.</div><div class="reviewer-loc">Lutz, FL</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-strip">
+    <div class="container">
+      <h2>Join Our Family of Satisfied Riders</h2>
+      <p>Experience the Aegis difference on your next medical trip.</p>
+      <a class="btn btn-outline" data-page="contact">Book a Ride</a>
+    </div>
+  </section>
+</div>
+
+<!-- ============ CONTACT / BOOKING PAGE ============ -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <div class="container">
+      <div class="crumbs">Home / Book a Ride</div>
+      <h1>Book Your Ride Today</h1>
+      <p>Fill out the form below and our team will confirm your ride details promptly. For immediate scheduling, give us a call.</p>
+    </div>
+  </div>
+
+  <section class="booking-bg">
+    <div class="container booking-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow" style="color:var(--teal);font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:.85rem">Contact</span>
+        <h2>Get In Touch</h2>
+        <p>We're here to make medical transportation effortless for you and your family. Reach us any time using the details below.</p>
+        <div class="info-item"><div class="info-icon">P</div><div><h4>Phone</h4><p>727-808-9360</p></div></div>
+        <div class="info-item"><div class="info-icon">F</div><div><h4>Fax</h4><p>727-808-9360</p></div></div>
+        <div class="info-item"><div class="info-icon">@</div><div><h4>Email</h4><p>Jesslopez7836@gmail.com</p></div></div>
+        <div class="info-item"><div class="info-icon">A</div><div><h4>Address</h4><p>34057 Sorrel Mint Dr<br>Wesley Chapel, FL 33543</p></div></div>
+        <div class="info-item"><div class="info-icon">H</div><div><h4>Hours</h4><p>Scheduling support 24/7<br>Rides during standard appointment hours</p></div></div>
+      </div>
+      <form id="bookingForm" action="https://formsubmit.co/Jesslopez7836@gmail.com" method="POST">
+        <h3>Ride Booking Form</h3>
+        <input type="hidden" name="_subject" value="New Ride Booking — Aegis Medical Transport"/>
+        <input type="hidden" name="_captcha" value="false"/>
+        <input type="hidden" name="_template" value="table"/>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name *</label><input type="text" name="Full Name" required/></div>
+          <div class="form-group"><label>Phone *</label><input type="tel" name="Phone" required/></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" name="Email" required/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Pickup Date *</label><input type="date" name="Pickup Date" required/></div>
+          <div class="form-group"><label>Pickup Time *</label><input type="time" name="Pickup Time" required/></div>
+        </div>
+        <div class="form-group"><label>Pickup Address *</label><input type="text" name="Pickup Address" required/></div>
+        <div class="form-group"><label>Drop-off Address *</label><input type="text" name="Drop-off Address" required/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Service Type *</label>
+            <select name="Service Type" required>
+              <option value="">Select...</option>
+              <option>Ambulatory</option>
+              <option>Wheelchair</option>
+              <option>Dialysis</option>
+              <option>Hospital Discharge</option>
+              <option>Doctor Appointment</option>
+              <option>Senior Care</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Round Trip?</label>
+            <select name="Round Trip"><option>One Way</option><option>Round Trip</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Special Requests / Notes</label><textarea name="Notes" placeholder="Any mobility needs, escort, equipment, etc."></textarea></div>
+        <button type="submit" class="btn btn-primary">Submit Booking Request</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+</main>
 
 <footer>
   <div class="container">
-    <div class="logo"><span class="logo-mark">A</span> Aegis Medical Transport LLC</div>
+    <div class="brand">AEGIS <span style="color:var(--teal)">Medical Transport</span></div>
     <p>Safe • Reliable • Compassionate Non-Emergency Medical Transportation</p>
-    <p>34057 Sorrel Mint Dr, Wesley Chapel, FL 33543 &nbsp;|&nbsp; 727-808-9360</p>
+    <div class="footer-nav">
+      <a data-page="home">Home</a>
+      <a data-page="services">Services</a>
+      <a data-page="goals">Our Goals</a>
+      <a data-page="reviews">Reviews</a>
+      <a data-page="contact">Book a Ride</a>
+    </div>
+    <p>34057 Sorrel Mint Dr, Wesley Chapel, FL 33543 &nbsp;|&nbsp; 727-808-9360 &nbsp;|&nbsp; Jesslopez7836@gmail.com</p>
     <div class="footer-bottom">© 2026 Aegis Medical Transport LLC. All rights reserved.</div>
   </div>
 </footer>
 
 <!-- CHATBOT -->
-<button class="chat-toggle" id="chatToggle" aria-label="Open chat">💬</button>
+<button class="chat-toggle" id="chatToggle" aria-label="Open chat">CHAT</button>
 <div class="chat-window" id="chatWindow">
   <div class="chat-header">
     <div><h4>Aegis Assistant</h4><span>Online • We reply fast</span></div>
     <button class="chat-close" id="chatClose">×</button>
   </div>
   <div class="chat-body" id="chatBody">
-    <div class="msg bot">Hello! 👋 Welcome to Aegis Medical Transport. How can I help you today?</div>
+    <div class="msg bot">Hello! Welcome to Aegis Medical Transport. How can I help you today?</div>
   </div>
   <div class="chat-quick">
     <button class="quick-btn" data-q="How do I book a ride?">Book a ride</button>
@@ -391,11 +516,39 @@
 </div>
 
 <script>
+  // ===== Multi-page routing =====
+  function showPage(name){
+    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+    const target=document.getElementById('page-'+name);
+    if(target){target.classList.add('active');}
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.classList.toggle('active',a.dataset.page===name);
+    });
+    document.getElementById('navLinks').classList.remove('open');
+    window.scrollTo({top:0,behavior:'instant'});
+    history.replaceState(null,'','#'+name);
+    // re-trigger reveal observer for new page
+    document.querySelectorAll('#page-'+name+' .reveal').forEach(el=>{
+      el.classList.remove('show');
+      io.observe(el);
+    });
+  }
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('[data-page]');
+    if(t){e.preventDefault();showPage(t.dataset.page);}
+  });
+
   // Reveal on scroll
-  const io = new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('show')),{threshold:.15});
+  const io = new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}
+  }),{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // Chatbot
+  // Load from hash
+  const initial=location.hash.replace('#','')||'home';
+  if(document.getElementById('page-'+initial))showPage(initial);
+
+  // ===== Chatbot =====
   const tog=document.getElementById('chatToggle'),win=document.getElementById('chatWindow'),
         body=document.getElementById('chatBody'),input=document.getElementById('chatInput'),
         send=document.getElementById('chatSend'),close=document.getElementById('chatClose');
@@ -403,10 +556,10 @@
   close.onclick=()=>win.classList.remove('open');
 
   const responses={
-    book:"You can book a ride using the form on this page, or call us at 727-808-9360. We'll confirm your pickup details right away!",
+    book:"You can book a ride using the form on our Book a Ride page, or call us at 727-808-9360. We'll confirm your pickup details right away!",
     service:"We offer Ambulatory transport, Wheelchair-accessible rides, Dialysis & recurring appointments, Hospital discharges, Doctor visits, and Senior care transport.",
     hour:"Our scheduling support is available 24/7. Rides are typically scheduled during standard medical appointment hours.",
-    area:"We proudly serve Wesley Chapel, Tampa, Land O' Lakes, and surrounding Florida communities.",
+    area:"We proudly serve Wesley Chapel, Tampa, Land O' Lakes, Lutz, Zephyrhills and surrounding Florida communities.",
     price:"Pricing depends on distance and service type. Please submit the booking form or call 727-808-9360 for a quick quote.",
     insur:"We work with many insurance and Medicaid transportation programs. Contact us with your provider details and we'll verify coverage.",
     contact:"You can reach us at 727-808-9360 or email Jesslopez7836@gmail.com. We're here to help!",
@@ -439,3 +592,4 @@
 
 </body>
 </html>
+
